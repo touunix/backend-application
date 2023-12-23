@@ -3,6 +3,7 @@ import { Schema, model } from "mongoose";
 class CarModel {
     static createSchema() {
         return new Schema({
+            Brand: String,
             Model: String,
             Year: Number,
             Color: String,
