@@ -4,20 +4,28 @@ import jwt from "jsonwebtoken";
 import { StatusCodes, getReasonPhrase } from "http-status-codes";
 
 export async function register_new_user(req, res, next) {
-    // TODO: Sprawdzenie czy już przypadkiem taki username nie istnieje w bazie
     try {
-        const hashed_password = await bcrypt.hash(req.body.password, 10);
-        const newUser = new User({
-            Username: req.body.username,
-            Password: hashed_password,
-        });
+        const filter = { Username: req.body.username };
+        const find_user = await User.findOne(filter);
 
-        const savedUser = await newUser.save();
+        if (!find_user) {
+            const hashed_password = await bcrypt.hash(req.body.password, 10);
+            const newUser = new User({
+                Username: req.body.username,
+                Password: hashed_password,
+            });
 
-        res.status(StatusCodes.CREATED).json({
-            Feedback_Message: "New user added Succesfully!",
-            Data_registration: savedUser.Data_registration,
-        });
+            const savedUser = await newUser.save();
+
+            res.status(StatusCodes.CREATED).json({
+                Feedback_Message: "New user added Succesfully!",
+                Data_registration: savedUser.Data_registration,
+            });
+        } else {
+            res.status(StatusCodes.CONFLICT).json({
+                Feedback_Message: "User already exists.",
+            });
+        }
     } catch (error) {
         console.error("Error during adding new car:", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -28,7 +36,8 @@ export async function register_new_user(req, res, next) {
 
 export async function login_user(req, res, next) {
     try {
-        const find_user = await User.findOne({ Username: req.body.username });
+        const filter = { Username: req.body.username };
+        const find_user = await User.findOne(filter);
 
         if (!find_user) {
             return res.status(StatusCodes.UNAUTHORIZED).json({ Error: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
