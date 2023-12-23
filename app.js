@@ -1,14 +1,21 @@
-const express = require("express");
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
-const carRoutes = require("./api/routes/cars_route");
+import express from "express";
+import morgan from "morgan";
+//import { json } from "body-parser";
 
+import pkg from 'body-parser';
+const { json } = pkg;
+
+import cars_routes from "./api/routes/cars_route.js";
+import users_routes from "./api/routes/users_route.js";
 const app = express();
+
 app.use(morgan("combined"));
-app.use(bodyParser.json());
-app.use("/cars", carRoutes);
+app.use(json());
+app.use("/cars", cars_routes);
+app.use("/users", users_routes);
+
 app.use((req, res, next)=>{
     res.status(404).json({message: "Not Found"});
 });
 
-module.exports = app;
+export default app;

@@ -1,8 +1,9 @@
-require("dotenv").config();
+//require("dotenv").config();
+import 'dotenv/config'
 
-const http = require("http");
-const app = require("./app")
-const DatabaseConnector = require("./database");
+import { createServer } from "http";
+import app from "./app.js";
+import DatabaseConnector from "./database.js";
 
 const database_connection = new DatabaseConnector(process.env.DATABASE_NAME,
                                                   process.env.DATABASE_USER,
@@ -10,6 +11,6 @@ const database_connection = new DatabaseConnector(process.env.DATABASE_NAME,
 database_connection.connect();
                                             
 const port = process.env.SERVER_PORT;  // declare server port
-const server  = http.createServer(app);  // create server
+const server  = createServer(app);  // create server
 
 server.listen(port); // start the server

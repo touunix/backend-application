@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const { Schema, model } = mongoose;
+import {Schema, model} from "mongoose"
+//const mongoose = require("mongoose");
+//const { Schema, model } = mongoose;
 
 class CarModel {
     static createSchema() {
@@ -17,4 +18,5 @@ class CarModel {
 const CarSchema = CarModel.createSchema();
 const CarModelInstance = model("CarModel", CarSchema);
 
-module.exports = CarModelInstance;
+//module.exports = CarModelInstance;
+export default CarModelInstance;
