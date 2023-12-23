@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+//const mongoose = require("mongoose");
 
 class DatabaseConnector {
     constructor(database_name, database_user, database_password){
@@ -14,4 +15,5 @@ class DatabaseConnector {
     };
 }
 
-module.exports = DatabaseConnector;
+//module.exports = DatabaseConnector;
+export default DatabaseConnector;
