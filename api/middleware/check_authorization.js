@@ -1,5 +1,5 @@
-const { StatusCodes, getReasonPhrase } = require("http-status-codes");
-const jwt = require("jsonwebtoken");
+import { StatusCodes, getReasonPhrase } from "http-status-codes";
+import jwt from "jsonwebtoken";
 
 class AuthorizationMiddleware {
     static checkAuthorization(req, res, next) {
@@ -14,5 +14,4 @@ class AuthorizationMiddleware {
     }
 }
 
-const AuthorizationMiddlewareInstance = AuthorizationMiddleware.checkAuthorization();
-module.exports = AuthorizationMiddlewareInstance;
+export default AuthorizationMiddleware.checkAuthorization;
