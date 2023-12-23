@@ -1,3 +1,4 @@
+const { StatusCodes, getReasonPhrase } = require("http-status-codes");
 const jwt = require("jsonwebtoken");
 
 class AuthorizationMiddleware {
@@ -8,7 +9,7 @@ class AuthorizationMiddleware {
             next();
         } catch (error) {
             console.error("Error during authorization process:", error);
-            res.status(401).json({ Error: "Authorization error" });
+            res.status(StatusCodes.UNAUTHORIZED).json({ Error: getReasonPhrase(StatusCodes.UNAUTHORIZED) });
         }
     }
 }
