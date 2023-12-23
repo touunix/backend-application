@@ -1,7 +1,4 @@
-//const mongoose = require("mongoose");
-//const { Schema, model } = mongoose;
-
-import {Schema, model} from "mongoose"
+import { Schema, model } from "mongoose";
 
 class UserModel {
     static createSchema() {
@@ -14,7 +11,6 @@ class UserModel {
 }
 
 const UserSchema = UserModel.createSchema();
-const UserModelInstance = model("User", UserSchema)
+const UserModelInstance = model("UserModel", UserSchema);
 
-//module.exports = UserModelInstance;
 export default UserModelInstance;
