@@ -18,7 +18,7 @@ export async function register_new_user(req, res, next) {
             const savedUser = await newUser.save();
 
             res.status(StatusCodes.CREATED).json({
-                Feedback_Message: "New user added Succesfully!",
+                Feedback_Message: "New user added Successfully!",
                 Data_registration: savedUser.Data_registration,
             });
         } else {
@@ -27,7 +27,7 @@ export async function register_new_user(req, res, next) {
             });
         }
     } catch (error) {
-        console.error("Error during adding new car:", error);
+        console.error("Error during adding new user:", error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             Error: getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR),
         });

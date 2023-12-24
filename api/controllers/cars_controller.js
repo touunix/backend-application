@@ -34,7 +34,7 @@ export async function get_car_info_by_id(req, res, next) {
             });
         } else {
             res.status(StatusCodes.NOT_FOUND).json({
-                Feedback_Message: `Car part with ID: ${car_id} does not exist.`,
+                Feedback_Message: `Car with ID: ${car_id} does not exist. Nothing to display.`,
             });
         }
     } catch (error) {
@@ -61,7 +61,7 @@ export async function add_new_car(req, res, next) {
         const savedCar = await newCar.save(); // Save the new car to the database
 
         res.status(StatusCodes.OK).json({
-            Feedback_Message: "New car added Succesfully!",
+            Feedback_Message: "New car added Successfully!",
             Info: savedCar,
         });
     } catch (error) {
@@ -89,11 +89,10 @@ export async function update_car_info_by_id(req, res, next) {
         if (result) {
             res.status(StatusCodes.OK).json({
                 Feedback_Message: `Updated details of a car with ID: ${car_id}`,
-                Info: result,
             });
         } else {
             res.status(StatusCodes.NOT_FOUND).json({
-                Feedback_Message: `Car part with ID: ${car_id} does not exist. Nothing to update.`,
+                Feedback_Message: `Car with ID: ${car_id} does not exist. Nothing to update.`,
             });
         }
     } catch (error) {
@@ -115,7 +114,7 @@ export async function delete_car_by_id(req, res, next) {
             });
         } else {
             res.status(StatusCodes.NOT_FOUND).json({
-                Feedback_Message: `Car part with ID: ${car_id} does not exist. Nothing to delete.`,
+                Feedback_Message: `Car with ID: ${car_id} does not exist. Nothing to delete.`,
             });
         }
     } catch (error) {

@@ -12,7 +12,7 @@ import check_authorization from "../middleware/check_authorization.js";
 const router = express.Router();
 
 router.get("/", get_all_spare_parts_list); // localhost:PORT/spare_parts
-router.get("/:brand_id", get_all_spare_parts_list_by_brand); // localhost:PORT/spare_parts/<brand-id>
+router.get("/brand_:brand_id", get_all_spare_parts_list_by_brand); // localhost:PORT/spare_parts/<brand-id>
 router.get("/:spare_part_id", get_spare_part_info_by_id); // localhost:PORT/spare_parts/123456
 router.post("/", check_authorization, add_new_spare_part); // localhost:PORT/spare_parts
 router.put("/:spare_part_id", check_authorization, update_spare_part_info_by_id); // localhost:PORT/spare_parts/123456
