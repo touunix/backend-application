@@ -87,7 +87,7 @@ export async function add_new_spare_part(req, res, next) {
         const savedSparePart = await newSparePart.save(); // Save the new spare part to the database
 
         res.status(StatusCodes.OK).json({
-            Feedback_Message: "New spare part added Succesfully!",
+            Feedback_Message: "New spare part added Successfully!",
             Info: savedSparePart,
         });
     } catch (error) {

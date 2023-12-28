@@ -5,12 +5,12 @@ class DatabaseConnector {
         this.database_name = database_name;
         this.database_user = database_user;
         this.database_password = database_password;
-        this.connection_adress = `mongodb+srv://${this.database_user}:${this.database_password}@cluster0.4ispprf.mongodb.net/${this.database_name}?retryWrites=true&w=majority`;
+        this.connection_address = `mongodb+srv://${this.database_user}:${this.database_password}@cluster0.4ispprf.mongodb.net/${this.database_name}?retryWrites=true&w=majority`;
     }
 
     connect() {
         mongoose
-            .connect(this.connection_adress)
+            .connect(this.connection_address)
             .then(() => console.log("SUCCESSFULLY connected to the Database!"))
             .catch((error) => console.error("Connection error:", error));
     }
